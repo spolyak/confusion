@@ -8,9 +8,9 @@ function Menu(props) {
     const renderMenuItem = ({ item, index }) => {
         return (
             <ListItem key={index}>
-                <Avatar ssize="small"
+                <Avatar size="small"
                     rounded
-                    title="MT"
+                    title="FD"
                 />
                 <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
