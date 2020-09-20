@@ -7,7 +7,7 @@ function Menu(props) {
 
     const renderMenuItem = ({ item, index }) => {
         return (
-            <ListItem key={index}>
+            <ListItem key={index} onPress={() => props.onPress(item.id)}>
                 <Avatar size="small"
                     rounded
                     title="FD"
