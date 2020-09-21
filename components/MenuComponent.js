@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text, StyleSheet } from 'react-native';
 import { Avatar, ListItem } from 'react-native-elements';
+import { DISHES } from '../shared/dishes';
 
-function Menu(props) {
+class Menu extends Component {
 
-    const renderMenuItem = ({ item, index }) => {
-        return (
-            <ListItem key={index} onPress={() => props.onPress(item.id)}>
-                <Avatar source={require('./images/uthappizza.png')}
-                />
-                <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
-                    <View style={styles.subtitleView}>
-                        <Text >{item.description}</Text>
-                    </View>
-                </ListItem.Content>
-            </ListItem>
-        );
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            dishes: DISHES
+        };
+    };
+
+    static navigationOptions = {
+        title: 'Menu'
+    };
+
     styles = StyleSheet.create({
         subtitleView: {
             flexDirection: 'row',
@@ -34,13 +32,31 @@ function Menu(props) {
         }
     })
 
-    return (
-        <FlatList
-            data={props.dishes}
-            renderItem={renderMenuItem}
-            keyExtractor={item => item.id.toString()}
-        />
-    )
+    render() {
+        const renderMenuItem = ({ item, index }) => {
+            return (
+                <ListItem key={index} onPress={() => navigate('Dishdetail', { dishId: item.id })}>
+                    <Avatar source={require('./images/uthappizza.png')}
+                    />
+                    <ListItem.Content>
+                        <ListItem.Title>{item.name}</ListItem.Title>
+                        <View>
+                            <Text >{item.description}</Text>
+                        </View>
+                    </ListItem.Content>
+                </ListItem>
+            );
+        }
+
+        const { navigate } = this.props.navigation;
+        return (
+            <FlatList
+                data={this.state.dishes}
+                renderItem={renderMenuItem}
+                keyExtractor={item => item.id.toString()}
+            />
+        )
+    }
 }
 
 export default Menu;
