@@ -1,24 +1,18 @@
-import { createAppContainer } from 'react-navigation';
+import React from 'react';
 import Menu from './MenuComponent';
 import Dishdetail from './DishDetailComponent';
-import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const MenuNavigator = createStackNavigator({
-    Menu: { screen: Menu },
-    Dishdetail: { screen: Dishdetail }
-}, {
-    initialRouteName: 'Menu',
-    navigationOptions: {
-        headerStyle: {
-            backgroundColor: '#512DA8'
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            color: '#fff'
-        }
-    }
-});
+const Stack = createStackNavigator();
 
-const Main = createAppContainer(MenuNavigator);
-
-export default Main; 
+export default function Main() {
+    return (
+        <NavigationContainer independent={true}>
+            <Stack.Navigator>
+                <Stack.Screen name="Menu" component={Menu} />
+                <Stack.Screen name="Dishdetail" component={Dishdetail} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
