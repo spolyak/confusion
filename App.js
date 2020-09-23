@@ -1,17 +1,10 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import Main from './components/MainComponent';
+import MainComponent from './components/MainComponent';
+import HomeComponent from './components/HomeComponent';
 import { View, Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-
-function Home() {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 
@@ -20,8 +13,8 @@ class App extends Component {
     return (
       <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Main" component={Main} />
+        <Drawer.Screen name="Home" component={HomeComponent} />
+        <Drawer.Screen name="Main" component={MainComponent} />
       </Drawer.Navigator>
     </NavigationContainer>
     );
