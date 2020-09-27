@@ -3,28 +3,29 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
 import HomeComponent from './components/HomeComponent';
 import AboutComponent from './components/AboutComponent';
 import ContactComponent from './components/ContactComponent';
 import MenuComponent from './components/MenuComponent';
 import DishDetailComponent from './components/DishDetailComponent';
+import { DrawerContent } from './components/DrawerContent';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const menuOptions = ({ navigation }) => ({
   headerLeft: () => (
     <TouchableOpacity onPress={() => navigation.openDrawer()}>
       <Icon
+        name="menu"
         size={23}
         style={{ padding: 12 }}
-        type={'font-awesome-5'}
-        name={'bars'}></Icon>
+      />
     </TouchableOpacity>
   )
 });
 
 const Home = ({ navigation }) => (
   <Stack.Navigator>
-    <Stack.Screen name="Confusion Restaurant" component={HomeComponent} options={menuOptions} />
+    <Stack.Screen name="Ristorante Con Fusion" component={HomeComponent} options={menuOptions} />
   </Stack.Navigator>
 )
 const About = ({ navigation }) => (
@@ -45,37 +46,19 @@ function Menu() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Menu" component={MenuComponent} options={menuOptions} />
-      <Stack.Screen name="Dishdetail" component={DishDetailComponent} />
+      <Stack.Screen name="Dishdetail" component={DishDetailComponent}
+        options={{ title: 'Menu Details' }} />
     </Stack.Navigator>
   );
 }
 
 const DrawerNavigator = () => (
-  <Drawer.Navigator initialRouteName="Home">
-    <Drawer.Screen name="Home" component={Home} options={{
-      drawerIcon: config => <Icon
-        size={23}
-        type={'font-awesome-5'}
-        name={'home'}></Icon>
-    }} />
-    <Drawer.Screen name="Menu" component={Menu} options={{
-      drawerIcon: config => <Icon
-        size={23}
-        type={'font-awesome-5'}
-        name={'utensils'}></Icon>
-    }} />
-    <Drawer.Screen name="About" component={About} options={{
-      drawerIcon: config => <Icon
-        size={23}
-        type={'font-awesome-5'}
-        name={'address-card'}></Icon>
-    }} />
-    <Drawer.Screen name="Contact" component={Contact} options={{
-      drawerIcon: config => <Icon
-        size={23}
-        type={'font-awesome-5'}
-        name={'comment-alt'}></Icon>
-    }} />
+  <Drawer.Navigator initialRouteName="Home"
+    drawerContent={props => <DrawerContent {...props} />}>
+    <Drawer.Screen name="Home" component={Home} />
+    <Drawer.Screen name="Menu" component={Menu} />
+    <Drawer.Screen name="About" component={About} />
+    <Drawer.Screen name="Contact" component={Contact} />
   </Drawer.Navigator>
 )
 
