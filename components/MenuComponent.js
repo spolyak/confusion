@@ -11,11 +11,7 @@ class Menu extends Component {
             dishes: DISHES
         };
     };
-
-    static navigationOptions = {
-        title: 'Menu'
-    };
-
+    
     styles = StyleSheet.create({
         subtitleView: {
             flexDirection: 'row',
