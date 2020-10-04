@@ -10,6 +10,10 @@ import MenuComponent from './components/MenuComponent';
 import DishDetailComponent from './components/DishDetailComponent';
 import { DrawerContent } from './components/DrawerContent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore'
+
+const store = ConfigureStore();
 
 const menuOptions = ({ navigation }) => ({
   headerLeft: () => (
@@ -64,8 +68,10 @@ const DrawerNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <DrawerNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }

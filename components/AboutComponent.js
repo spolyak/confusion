@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { Card } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state =>  {
+    return {
+        leaders: state.leaders 
+    }
+}
 
 const aboutTitle = "About"
 const aboutText = "This is our about text"
@@ -26,4 +33,4 @@ class AboutComponent extends Component {
     }
 }
 
-export default AboutComponent;
+export default connect(mapStateToProps)(AboutComponent;
